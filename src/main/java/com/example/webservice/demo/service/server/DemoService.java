@@ -4,6 +4,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.bind.JAXBException;
 
 /**
  * @author LiHaitao
@@ -15,41 +16,14 @@ import javax.jws.WebService;
 )
 public interface DemoService {
 
-    public String test(String orgCode, String startTime, String endTime, String currentPage, String pageSize, String cardId, String userName, String deptCode);
+    @WebMethod(operationName = "test")//方法名test
+    public @WebResult(name = "QueryReturn") String test(@WebParam(name = "test")String code);
 
 
-    /**
-     * 获取部门信息
-     * @param token
-     * @param business
-     * @param content
-     * @return
-     */
-    public @WebResult(name = "QueryReturn") String QueryDept(@WebParam(name = "token") String token
-            , @WebParam(name = "business") String business,@WebParam(name = "content") String content);
-
-    /**
-     * 警员信息
-     * @param token
-     * @param business
-     * @param content
-     * @return
-     */
-    public @WebResult(name = "QueryReturn")
-    String QueryData(@WebParam(name = "token") String token
-            , @WebParam(name = "business") String business, @WebParam(name = "content") String content);
+    @WebMethod(operationName = "testXml")//方法名test
+    public @WebResult(name = "QueryReturn") String testXml(@WebParam(name = "test")String code) throws JAXBException;
 
 
-    /**
-     *
-     * @param token
-     * @param content
-     * @return
-     */
-    @WebMethod
-    public @WebResult(name = "uploadSpztReturn")
-    String uploadSpzt(@WebParam(name = "token") String token
-            , @WebParam(name = "content") String content);
 
 }
 
